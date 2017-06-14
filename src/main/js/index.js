@@ -64,7 +64,7 @@ var uncss = require('gulp-uncss');
 var cleancss = require('gulp-clean-css');
 var autoprefixer = require('autoprefixer');
 
-var PLI = require('superfly-css-pli');
+var PLI = require('@superflycss/pli');
 
 var pre_uncss_processors = [pc_import, pc_each, pc_for, pc_custom_properties, pc_apply, pc_calc, pc_color_function, pc_sass_color_functions, pc_custom_media];
 var post_uncss_processors = [pc_font_magician, autoprefixer, pc_reporter({
