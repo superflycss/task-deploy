@@ -1,6 +1,6 @@
 {
   "name": "@superflycss/task-deploy",
-  "version": "1.0.2",
+  "version": "2.0.2",
   "description": "Deploy task for superflycss modules",
   "main": "src/main/js/index.js",
   "scripts": {

@@ -4,25 +4,16 @@
 //==================================================
 //  Tasks
 //  ---------------------------------------------------
-//  ___________________________________________________
-//  ---------------------------------------------------
 //  deploy:main:css
-//  ---------------------------------------------------
 //  Deploys main css only
-//  ___________________________________________________
 //  ---------------------------------------------------
 //  deploy:test:css
-//  ---------------------------------------------------
 //  Deploys test css only
-//  ___________________________________________________
 //  ---------------------------------------------------
 //  deploy:main:html
 //  ---------------------------------------------------
 //  Deploys main html only
-//  ___________________________________________________
-//  ---------------------------------------------------
 //  Deploys test html only
-//  ___________________________________________________
 //  ---------------------------------------------------
 //  IMPLEMENTATION
 //  ---------------------------------------------------
@@ -35,13 +26,6 @@
 //  corresponding @font-face declaration generated.
 //  ---------------------------------------------------
 //  deploy:main:html and deploy:test:html
-//  ---------------------------------------------------
-//  Deploying html files updates the css import directory to the `deploy`
-//  directory.  In other words if the css import is currently being done like
-//  this:
-//  <link rel="stylesheet" type="text/css" href="../../../target/test/css/index.css">
-//  After deployment it will be done like this:
-//  <link rel="stylesheet" type="text/css" href="../../../deploy/test/css/index.css">
 //  ---------------------------------------------------
 //==================================================
 
@@ -70,9 +54,6 @@ var pre_uncss_processors = [pc_import, pc_each, pc_for, pc_custom_properties, pc
 var post_uncss_processors = [pc_font_magician, autoprefixer, pc_reporter({
   clearMessages: true
 })];
-
-var link_selector = 'link[href^="../../../target/"][href$=".css"]';
-
 /*
  * IMPLEMENTATION
  * ================================================
@@ -110,19 +91,11 @@ gulp.task('deploy:test:css', function() {
 gulp.task('deploy:main:html', function() {
   return gulp
     .src(PLI.TARGET_MAIN_HTML)
-    .pipe(cheerio(function($, file) {
-      $(link_selector).attr('href',
-        $(link_selector).attr('href').replace('target', 'deploy'));
-    }))
     .pipe(gulp.dest(PLI.deploy.main.html));
 });
 
 gulp.task('deploy:test:html', function() {
   return gulp
     .src(PLI.TARGET_TEST_HTML)
-    .pipe(cheerio(function($, file) {
-      $(link_selector).attr('href',
-        $(link_selector).attr('href').replace('target', 'deploy'));
-    }))
     .pipe(gulp.dest(PLI.deploy.test.html));
 });
