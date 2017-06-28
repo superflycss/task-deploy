@@ -20,7 +20,7 @@
 //  deploy:main:css and deploy:test:css
 //  ---------------------------------------------------
 //  These tasks rerun all the plugins in configured in
-//  superfly-css-task-build task.  The reason is that
+//  superflycss/task-build task.  The reason is that
 //  font magician  has to be run after uncss is run.
 //  That way only fonts  that are used will have a
 //  corresponding @font-face declaration generated.
