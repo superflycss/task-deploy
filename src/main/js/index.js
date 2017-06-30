@@ -1,6 +1,6 @@
 //==================================================
 //  For the description see
-//  [SupeflyCSS Test Task](https://github.com/superfly-css/superfly-css-task-deploy/)
+//  [SupeflyCSS Test Task](https://github.com/superflycss/task-deploy/)
 //==================================================
 //  Tasks
 //  ---------------------------------------------------
@@ -24,6 +24,13 @@
 //  font magician  has to be run after uncss is run.
 //  That way only fonts  that are used will have a
 //  corresponding @font-face declaration generated.
+//
+//  Also note that uncss is run against the target Directory
+//  containing the built html files.  This is important.  The
+//  src directory contains unbuilt html files and these will
+//  not have all the css classes rendered, which would result in
+//  uncss not seeing them.
+//
 //  ---------------------------------------------------
 //  deploy:main:html and deploy:test:html
 //  ---------------------------------------------------
@@ -65,7 +72,7 @@ gulp.task('deploy:main:css', function() {
   return gulp.src(PLI.SRC_MAIN_CSS)
     .pipe(pc(pre_uncss_processors))
     .pipe(uncss({
-      html: [PLI.SRC_MAIN_HTML]
+      html: [PLI.TARGET_MAIN_HTML]
     }))
     .pipe(pc(post_uncss_processors))
     .pipe(cleancss({
@@ -74,12 +81,11 @@ gulp.task('deploy:main:css', function() {
     .pipe(gulp.dest(PLI.deploy.main.css));
 });
 
-
 gulp.task('deploy:test:css', function() {
   return gulp.src(PLI.SRC_TEST_CSS)
     .pipe(pc(pre_uncss_processors))
     .pipe(uncss({
-      html: [PLI.SRC_TEST_HTML]
+      html: [PLI.TARGET_TEST_HTML]
     }))
     .pipe(pc(post_uncss_processors))
     .pipe(cleancss({
