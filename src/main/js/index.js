@@ -37,7 +37,6 @@
 //==================================================
 
 var gulp = require('gulp');
-var cheerio = require('gulp-cheerio');
 var pc = require('gulp-postcss');
 var pc_import = require('postcss-import');
 var pc_calc = require('postcss-calc');
