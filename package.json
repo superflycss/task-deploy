@@ -1,6 +1,6 @@
 {
   "name": "@superflycss/task-deploy",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "description": "Deploy task for superflycss modules",
   "main": "src/main/js/index.js",
   "scripts": {
@@ -29,11 +29,10 @@
   },
   "homepage": "https://github.com/superflycss/task-deploy#readme",
   "dependencies": {
+    "@superflycss/pli": "^1.0.0",
     "autoprefixer": "^7.1.1",
-    "gulp-cheerio": "^0.6.2",
     "gulp-clean-css": "^3.5.0",
     "gulp-postcss": "^7.0.0",
-    "gulp-uncss": "^1.0.6",
     "postcss-apply": "^0.8.0",
     "postcss-calc": "^6.0.0",
     "postcss-color-function": "^4.0.0",
@@ -45,7 +44,8 @@
     "postcss-import": "^10.0.0",
     "postcss-reporter": "^4.0.0",
     "postcss-sass-color-functions": "^1.1.0",
-    "@superflycss/pli": "^1.0.0"
+    "postcss-uncss": "^0.15.0",
+    "uncss": "^0.15.0"
   },
   "peerDependencies": {
     "gulp": "^3.x"

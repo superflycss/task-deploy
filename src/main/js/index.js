@@ -50,15 +50,14 @@ var pc_apply = require('postcss-apply');
 var pc_reporter = require('postcss-reporter');
 var pc_custom_media = require('postcss-custom-media');
 var pc_font_magician = require('postcss-font-magician');
+var pc_uncss = require('postcss-uncss');
 
-var uncss = require('gulp-uncss');
 var cleancss = require('gulp-clean-css');
 var autoprefixer = require('autoprefixer');
 
 var PLI = require('@superflycss/pli');
 
-var pre_uncss_processors = [pc_import, pc_each, pc_for, pc_custom_properties, pc_apply, pc_calc, pc_color_function, pc_sass_color_functions, pc_custom_media];
-var post_uncss_processors = [pc_font_magician, autoprefixer, pc_reporter({
+var uncss_processors = [pc_import, pc_each, pc_for, pc_custom_properties, pc_apply, pc_calc, pc_color_function, pc_sass_color_functions, pc_custom_media, pc_font_magician, autoprefixer, pc_uncss({html: [PLI.TARGET_MAIN_HTML]}), pc_reporter({
   clearMessages: true
 })];
 /*
@@ -70,11 +69,7 @@ var post_uncss_processors = [pc_font_magician, autoprefixer, pc_reporter({
  */
 gulp.task('deploy:main:css', function() {
   return gulp.src(PLI.SRC_MAIN_CSS)
-    .pipe(pc(pre_uncss_processors))
-    .pipe(uncss({
-      html: [PLI.TARGET_MAIN_HTML]
-    }))
-    .pipe(pc(post_uncss_processors))
+    .pipe(pc(uncss_processors))
     .pipe(cleancss({
       compatibility: 'ie8'
     }))
@@ -83,11 +78,7 @@ gulp.task('deploy:main:css', function() {
 
 gulp.task('deploy:test:css', function() {
   return gulp.src(PLI.SRC_TEST_CSS)
-    .pipe(pc(pre_uncss_processors))
-    .pipe(uncss({
-      html: [PLI.TARGET_TEST_HTML]
-    }))
-    .pipe(pc(post_uncss_processors))
+    .pipe(pc(uncss_processors))
     .pipe(cleancss({
       compatibility: 'ie8'
     }))
