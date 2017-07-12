@@ -56,9 +56,14 @@ var autoprefixer = require('autoprefixer');
 
 var PLI = require('@superflycss/pli');
 
-var uncss_processors = [pc_import, pc_each, pc_for, pc_custom_properties, pc_apply, pc_calc, pc_color_function, pc_sass_color_functions, pc_custom_media, pc_font_magician, autoprefixer, pc_uncss({html: [PLI.TARGET_MAIN_HTML]}), pc_reporter({
+var uncss_main_processors = [pc_import, pc_each, pc_for, pc_custom_properties, pc_apply, pc_calc, pc_color_function, pc_sass_color_functions, pc_custom_media, pc_font_magician, autoprefixer, pc_uncss({html: [PLI.TARGET_MAIN_HTML]}), pc_reporter({
   clearMessages: true
 })];
+
+var uncss_test_processors = [pc_import, pc_each, pc_for, pc_custom_properties, pc_apply, pc_calc, pc_color_function, pc_sass_color_functions, pc_custom_media, pc_font_magician, autoprefixer, pc_uncss({html: [PLI.TARGET_TEST_HTML]}), pc_reporter({
+  clearMessages: true
+})];
+
 /*
  * IMPLEMENTATION
  * ================================================
@@ -68,7 +73,7 @@ var uncss_processors = [pc_import, pc_each, pc_for, pc_custom_properties, pc_app
  */
 gulp.task('deploy:main:css', function() {
   return gulp.src(PLI.SRC_MAIN_CSS)
-    .pipe(pc(uncss_processors))
+    .pipe(pc(uncss_main_processors))
     .pipe(cleancss({
       compatibility: 'ie8'
     }))
@@ -77,7 +82,7 @@ gulp.task('deploy:main:css', function() {
 
 gulp.task('deploy:test:css', function() {
   return gulp.src(PLI.SRC_TEST_CSS)
-    .pipe(pc(uncss_processors))
+    .pipe(pc(uncss_test_processors))
     .pipe(cleancss({
       compatibility: 'ie8'
     }))
