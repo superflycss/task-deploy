@@ -1,5 +1,7 @@
 # Deploy task
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/superflycss/task-deploy.svg)](https://greenkeeper.io/)
+
 [Gulp](http://gulpjs.com/) [PostCSS](http://postcss.org/) deploy task for [superflycss](https://github.com/superflycss) modules.  The primary purpose of running this task is
 to remove css not used in test `src/main/html` and `src/test/html` files in order to make deployed content load faster (Some of the CSS modules are quite large).  The deploy task uses the [pli - project layout instance](https://github.com/superflycss/pli) and deploys css files in `src/main/css` and `src/test/css` to `deploy/main/css` and `deploy/test/css` correspondingly.  The primary purpose of doing this is to remove css that is not used in the `target/main/html` and `target/test/html` files.  See the [Deploy Task PostCSS Plugins](https://github.com/superflycss/deploy-build#plugins) list for a list of plugins currently supported.
 
